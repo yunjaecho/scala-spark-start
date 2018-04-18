@@ -18,5 +18,9 @@ object WordCounter {
     val wordResult = for (result <- wordCounts) yield (result._1, result._2)
     println(wordResult.getClass)
     println(wordResult)
+
+    println("==========================")
+    val wordPairRdd = words.map(word => (word, 1)).reduceByKey((x, y) => x + y)
+    for ((word, count) <- wordPairRdd) println(word + " : " + count)
   }
 }
